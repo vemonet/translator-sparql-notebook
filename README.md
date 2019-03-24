@@ -7,10 +7,10 @@ Uses **SPARQLWrapper** and **pandas** for display.
 ## Run Jupyter Notebook
 
 ```shell
-docker run -it -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes -v $PWD:/home/jovyan/ncats jupyter/datascience-notebook:latest
+docker run -it -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes -v PATH/TO/translator-sparql-notebook:/home/jovyan/ncats jupyter/datascience-notebook:latest
 ```
 
 ## Access
 
 Use the token provided when the docker container is started:
-http://localhost:8888/?token=MY_TOKEN
+http://localhost:8888/?token=MY_TOKEN]
