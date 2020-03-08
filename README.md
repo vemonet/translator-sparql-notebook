@@ -14,3 +14,9 @@ docker run -it -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes -v PATH/TO/translator-spar
 
 Use the token provided when the docker container is started:
 http://localhost:8888/?token=MY_TOKEN]
+
+## Install SPARQL Kernel
+
+```bash
+!jupyter sparqlkernel install --user
+```
