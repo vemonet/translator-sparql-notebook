@@ -1,1 +1,8 @@
 vim
+nano
+less
+python3-dev
+graphviz
+libgraphviz-dev
+pkg-config
+raptor2-utils

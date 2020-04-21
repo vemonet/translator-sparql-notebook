@@ -2,3 +2,4 @@ pandas
 rdflib
 SPARQLWrapper
 sparqlkernel
+pygraphviz
