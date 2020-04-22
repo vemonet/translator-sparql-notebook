@@ -1,0 +1,123 @@
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix biolink: <https://w3id.org/biolink/vocab/> .
+@prefix bl: <https://w3id.org/biolink/vocab/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827>
+  a biolink:PairwiseGeneToGeneInteraction ;
+  # a prov:Entity ; # Should we?
+  biolink:subject <http://identifiers.org/uniprot/A1L390> ;
+  biolink:object <http://identifiers.org/uniprot/A1L390> ;
+  biolink:relation biolink:interacts_with ;
+ 
+  biolink:negated false ;  # Already exist
+  # The following could/should be retrieved from the RDF distribution metadata. But could also be defined at the edge level
+  gr:validFrom "2005-10-09"^^xsd:date ;
+  gr:validThrough "2030-01-01"^^xsd:date ;
+  prov:generatedAtTime "2006-11-09T13:37"^^xsd:time ;
+  prov:wasAttributedTo <https://orcid.org/0000-0002-1501-1082> ; # dct:creator
+  prov:hadPrimarySource <https://w3id.org/data2services/dataset/preppi/distribution/source#1.0> ;
+  void:inDataset <https://w3id.org/data2services/graph/biolink/preppi> ; # Graphd URI and/or HCLS dataset distribution URI
+  dct:license <http://creativecommons.org/licenses/by-sa/3.0/> ;
+  dct:conformsTo <https://w3id.org/biolink/vocab/> ;
+  prov:wasGeneratedBy <https://w3id.org/data2services/data/protein/interaction/A1L390O14827/transformation-process> ;
+  prov:wasGeneratedBy <https://w3id.org/data2services/data/protein/interaction/A1L390O14827/pubs-score> ;
+  prov:wasGeneratedBy <https://w3id.org/data2services/data/protein/interaction/A1L390O14827/predicted-score> ;
+  prov:wasGeneratedBy <https://w3id.org/data2services/data/protein/interaction/A1L390O14827/final-score> ;
+.
+<http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C142403> a biolink:Methodology ;
+  biolink:name "Bayesian approach" .
+
+### Final score compiled from other scores
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827/final-score>
+  a prov:Activity , biolink:ComputationalActivity ;
+  prov:startedAtTime "2006-11-08T09:00"^^xsd:time ;
+  prov:endedAtTime "2006-11-09T13:37"^^xsd:time ;
+  prov:used <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C142403> ; # Bayesian framework
+  prov:wasStartedBy <https://orcid.org/0000-0002-2480-6696> ; # Barry Honig, author of the publication (stub)
+  prov:wasEndedBy <https://orcid.org/0000-0002-2480-6696> ;
+  biolink:has_confidence <https://w3id.org/data2services/data/protein/interaction/A1L390O14827/final-score/confidence>
+.
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827/final-score/confidence>
+  a biolink:ConfidenceLevel ;
+  rdf:value "0.9"^^xsd:float ;
+  dct:conformsTo <https://w3id.org/data2services/data/confidence_specification/preppi/final-score> .
+<https://w3id.org/data2services/data/confidence_specification/preppi/final-score>
+  a biolink:ConfidenceSpecification ;
+  biolink:description "Final probability assigned to the interaction obtained combining both the Predicted and Experimental Score. Moving the mouse over the probability shows the associated LR value." ;
+  biolink:datatype xsd:float ;
+  biolink:confidence_range_from "0.0"^^xsd:float ;
+  biolink:confidence_range_to "1.0"^^xsd:float ;
+  biolink:confidence_min_step "0.01"^^xsd:float ;
+.
+### Score predicted using 'real life' experiment (can we really separate it from computational?)
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827/predicted-score>
+  a prov:Activity , biolink:ExperimentalActivity ;
+  prov:startedAtTime "2006-11-08T09:00"^^xsd:time ;
+  prov:endedAtTime "2006-11-09T13:37"^^xsd:time ;
+  prov:used <http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C142403> ; # Methodology (Bayesian framework)
+  prov:wasStartedBy <https://orcid.org/0000-0002-2480-6696> ; # Barry Honig, author of the publication (stub)
+  prov:wasEndedBy <https://orcid.org/0000-0002-2480-6696> ;
+  biolink:has_confidence <https://w3id.org/data2services/data/protein/interaction/A1L390O14827/predicted-score/confidence>
+.
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827/predicted-score/confidence>
+  a biolink:ConfidenceLevel ;
+  rdf:value "324636326"^^xsd:float ;
+  dct:conformsTo <https://w3id.org/data2services/data/confidence_specification/preppi/predicted-score> .
+# Confidence spec for predicted scores
+<https://w3id.org/data2services/data/confidence_specification/preppi/predicted-score>
+  a biolink:ConfidenceSpecification ;
+  biolink:description "Final predicted score obtained by combining multiple scores: SM: Structural modeling score. PrP: Protein Peptide LR, Max_S: Maximum structural LR. This value is always the maximum of the previous two, OR: Orthology LR. Clicking on the LR value a pop-up menu is displayed showing the ortholog/paralog interactions found in each orthology database, PP: Phylogenetic Profile LR, EP: Expression Profile LR, PR: Partner Redundancy LR, GO: Gene Ontology LR." ;
+  biolink:datatype xsd:integer ;
+  biolink:confidence_range_from "0"^^xsd:float ;
+  biolink:confidence_direction "the_greater_the_better" ;
+  #biolink:confidence_range_to "1.0"^^xsd:float ; # no upper bound
+.
+<https://identifiers.org/pubmed:12244049> a biolink:Publication ;
+  bl:name "HLA-B27 subtypes differentially associated with disease exhibit subtle structural alterations." .
+### Score predicted from a publication
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827/pubs-score>
+  a prov:Activity , biolink:PublicationActivity ;
+  prov:startedAtTime "2006-11-08T09:00"^^xsd:time ;
+  prov:endedAtTime "2006-11-09T13:37"^^xsd:time ;
+  prov:used <https://identifiers.org/pubmed:12244049> ; # Publication
+  # We could reuse description, or use a specific (excerpt, span...)
+  biolink:description "To uncover the underlying molecular causes, we determined the crystal structures of the disease-associated B*2705 and the nonassociated B*2709 subtypes complexed with the same nonapeptide (GRFAAAIAK)" ;
+ 
+  prov:wasStartedBy "Hülsmeyer M" ;
+  prov:wasEndedBy "Hülsmeyer M" ;
+  biolink:has_confidence <https://w3id.org/data2services/data/protein/interaction/A1L390O14827/pubs-score/confidence>
+.
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827/pubs-score/confidence> a biolink:ConfidenceLevel ;
+  rdf:value "11563"^^xsd:float ;
+  dct:conformsTo <https://w3id.org/data2services/data/confidence_specification/preppi/pubs-score> .
+# Confidence spec for predicted scores
+<https://w3id.org/data2services/data/confidence_specification/preppi/pubs-score>
+  a biolink:ConfidenceSpecification ;
+  biolink:description "Score referring to publications which support the existence of this interaction" ;
+  biolink:datatype xsd:integer ;
+  biolink:confidence_range_from "0"^^xsd:float ;
+  biolink:confidence_direction "the_greater_the_better" ;
+  #biolink:confidence_range_to "1.0"^^xsd:float ; # no upper bound
+.
+### Data Transformation process
+<https://w3id.org/data2services/data/protein/interaction/A1L390O14827/transformation-process>
+  a prov:Activity , bl:DataGenerationActivity ;
+  prov:startedAtTime "2006-11-08T09:00"^^xsd:time ;
+  prov:endedAtTime "2006-11-09T13:37"^^xsd:time ;
+  prov:used <https://github.com/MaastrichtU-IDS/data2services-pipeline> ,
+    <https://github.com/MaastrichtU-IDS/data2services-transform-biolink/tree/master/mapping/drugbank/transform/1> ;
+  prov:wasStartedBy <https://orcid.org/0000-0002-1501-1082> ;
+  prov:wasEndedBy <https://orcid.org/0000-0002-1501-1082> ;
+.
+<https://orcid.org/0000-0002-1501-1082> a biolink:Provider ;
+  biolink:name "Vincent Emonet" .
+<https://orcid.org/0000-0002-2480-6696> a biolink:Provider ;
+  biolink:name "Barry Honig" .
