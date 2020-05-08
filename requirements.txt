@@ -1,5 +1,7 @@
-pandas
 rdflib
 SPARQLWrapper
 sparqlkernel
 pygraphviz
+dipper
+biothings
+biothings-explorer
